@@ -1,0 +1,70 @@
+<form (ngSubmit)="enviarFactura()">
+<input type="text" value={{cliente.id}}  name="clienteid" [(ngModel)]="factura.clienteid" style="visibility: hidden" > <br>
+Nombre Cliente <input type="text" value={{cliente.nombre}} disabled><br>
+Detalle Factura <input type="text" name="nombre" [(ngModel)]="factura.nombre"> <br>
+<!-- Productos <select name="producto" [(ngModel)]="producto.id" (change)="verproducto($event)">
+
+  <option  [ngValue]="item.id" *ngFor="let item of cargaproducto">{{item.nombre}}</option>
+</select> <br>
+Cantidad <input type="number" min="1" [(ngModel)]="producto.cantidad" name="cantidad" ><br><br>
+ -->
+
+Categoria<select (change)="vercategoria($event)">
+
+<option>--Seleccione Categoria---</option>
+  <option *ngFor="let item of categorias">{{item.nombre}} {{(item.id)}}</option>
+</select> <br>
+
+
+Item
+
+
+<select>
+  <option *ngFor="let item of listaCategoriasProductos">{{item.nombre}} </option>
+</select>
+
+Producto
+
+<form class="example-form">
+  <mat-form-field class="example-full-width">
+    <input type="text" placeholder="Añade un nuevo producto" aria-label="Assignee" matInput [formControl]="myControl" [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="seleccionarProducto($event)">
+      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+        {{option.nombre}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>
+
+<table class="table" *ngIf="factura.items.length>0">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Producto</th>
+
+      <th scope="col">Precio</th>
+      <th scope="col">Cantidad</th>
+      <th scope="col">Precio Total</th>
+      <th scope="col">Eliminar Producto</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of factura.items">
+      <th scope="row">1</th>
+      <td> {{item.producto.nombre}}</td>
+      <td>{{item.producto.precio}}</td>
+      <td><input type="number" (change)="cambiaPrecio($event,item.producto.id)" value="{{item.cantidad}}"></td>
+      <td>{{item.calcularImporte()}}</td>
+      <td><button class="alert alert-danger" (click)="eliminaProducto(item.producto.id)">x</button></td>
+
+    </tr>
+    <div class="float-right">Gran Total: <span class="badge badge-secondary">{{factura.calcularGranTotal()}} </span></div>
+  </tbody>
+  </table>
+
+
+<button class="btn btn-success">Guardar Factura</button>
+</form>
+
+
+

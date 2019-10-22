@@ -1,0 +1,62 @@
+
+
+
+
+
+<!-- Modal -->
+<div class="modal abrir-modal " *ngIf="modalService.modal" tabindex="-1" role="dialog" style="display:block;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Detalle del Estudiante</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="cerrarModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div *ngIf="estudiante">
+
+          <p> {{estudiante.nombre}}</p>
+          <p> {{estudiante.edades}}</p>
+          <img *ngIf="estudiante.foto"  src="http://localhost:3000/imagen/{{estudiante.foto}}" class="img-thumbnail">
+          <img *ngIf="!estudiante.foto"  src="http://localhost:3000/imagen/null" class="img-thumbnail">
+          Subir Foto <input (change)="seleccionarFoto($event)" type="file" [(ngModel)]="estudiante.foto">
+<br>
+            <button class="btn btn-primary" [routerLink]="['/factura',estudiante.id]">Crear Factura</button>
+              <div *ngIf="estudiante.Facturas.length === 0" class="alert alert-danger mt-5">
+                    No existen facturas
+              </div>
+              <table class="table mt-5" *ngIf="estudiante.Facturas.length > 0" >
+                <thead>
+                  <tr>
+                    <th scope="col">Factura </th>
+                    <th scope="col">Descripcion</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of estudiante.Facturas">
+                    <th scope="row">{{item.id}}</th>
+                    <td>{{item.descripcion}}</td>
+
+                  </tr>
+                  <tr>
+                  </tbody>
+                </table>
+
+
+
+
+        </div>
+      </div>
+
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="cerrarModal()">Close</button>
+        <button type="button" class="btn btn-primary" (click)="subirFoto()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+

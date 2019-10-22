@@ -1,0 +1,59 @@
+
+
+<!-- Modal -->
+<!-- Modal -->
+<div class="modal abrir-modal " *ngIf="modal.modal" tabindex="-1" role="dialog" style="display:block;">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Detalle del Estudiante</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="cerrarModal()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div *ngIf="cliente">
+
+            <p> Cliente: {{cliente.nombre}}</p>
+
+              <div class="alert alert-danger" *ngIf="cliente.Facturas.length===0">
+                  No existen facturas para el Cliente
+              </div>
+
+            <table class="table" *ngIf="cliente.Facturas.length>0">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Ver Factura</th>
+                    <th scope="col">Eliminar Factura</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of cliente.Facturas">
+                    <th scope="row">1</th>
+                    <td> {{item.nombre}}</td>
+                    <td><button class="btn btn-success" [routerLink]="['/verfactura',item.id]" routerLinkActive="router-link-active" >Ver Factura</button></td>
+                    <td><button class="btn btn-danger">Eliminar</button></td>
+                  </tr>
+                </tbody>
+                </table>
+
+
+
+          </div>
+        </div>
+
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="cerrarModal()">Close</button>
+          <button type="button" class="btn btn-primary" >Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+

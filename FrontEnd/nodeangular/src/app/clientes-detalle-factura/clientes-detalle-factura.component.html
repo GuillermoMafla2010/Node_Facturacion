@@ -1,0 +1,40 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+
+<div id="nuevopdf">
+<p *ngIf="facturas">
+{{facturas.nombre}}
+</p>
+
+<p *ngIf="cliente" >
+  {{cliente.nombre}}
+</p>
+
+<div class="container">
+
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Producto</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Cantidad</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of detallefacturas">
+            <th scope="row">1</th>
+            <td>{{item.Producto.nombre}}</td>
+            <td>{{item.Producto.precio}}</td>
+            <td>{{item.cantidad}}</td>
+          </tr>
+          </tbody>
+          </table>
+
+
+</div>
+
+</div>
+
+
+<button id="customButton" class="btn btn-primary" (click)="pago()">Pagar</button>
+<button class="btn btn-warning" (click)="exportar()"> Exportar</button>

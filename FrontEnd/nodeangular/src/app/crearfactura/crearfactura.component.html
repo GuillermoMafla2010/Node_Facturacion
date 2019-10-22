@@ -1,0 +1,10 @@
+<h1>Crear Factura</h1>
+
+
+
+<form (ngSubmit)="subirfactura()">
+  <label>Descripcion</label>
+  <input type="text" name="descripcion" [(ngModel)]="facturas.descripcion"><br>
+<button type="submit" class="btn btn-primary" >Crear Factura</button>
+
+</form>
