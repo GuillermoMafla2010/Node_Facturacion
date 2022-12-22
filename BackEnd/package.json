@@ -17,7 +17,7 @@
     "express": "^4.16.4",
     "express-fileupload": "^1.1.4",
     "fast-csv": "^3.0.1",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "mariadb": "^2.0.4",
     "mysql": "github:mysqljs/mysql",
     "mysql-model": "0.0.3",
